@@ -4,28 +4,18 @@
 
 It uses a broad characterization of politics: Politics is about "who gets what, when, and how" [(Lasswell, 1936)](https://www.cambridge.org/core/journals/american-political-science-review/article/politics-who-gets-what-when-how-by-harold-d-lasswell-new-york-whittlesey-house-1936-pp-ix-264/90C407BEDE6963B3D2C84FF79C695E1E). As a result, *Political News Filter* may consider business news or tech news as political, depending on actual contents.
 
-## Requirements
-- Git LFS installed and setup for your user's account
-- Python 3.6+
-- Pandas 0.24.1+
-- NumPy 1.18.1+
-- Keras 2.3.1+
-
-Terminal friends may install requirements using:
-```
-conda create --yes -n polnewsfilter python=3.7
-conda activate polnewsfilter 
-conda install --yes pandas
-conda install --yes -c conda-forge keras
-```
-
 ## Setup
 
 1. Clone this repository
-2. Download and extract [pon_classifier.zip](https://drive.google.com/open?id=1kmFr3WYOa7bSQELvpMcY77wH4gzLe9cJ) into the repository folder. Its inflated size is 1.2 GB.
+2. ```
+   conda create --yes -n polnewsfilter python=3.7
+   conda activate polnewsfilter 
+   conda install --yes pandas
+   conda install --yes -c conda-forge keras
+   ```
+3. Download and extract [pon_classifier.zip](https://drive.google.com/open?id=1kmFr3WYOa7bSQELvpMcY77wH4gzLe9cJ) into the repository folder. Its inflated size is 1.2 GB.
 
-
-## Usage Demo
+## Usage
 
 Start a Python session:
 
