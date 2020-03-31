@@ -5,7 +5,7 @@ import doctest
 import pandas as pd
 import numpy as np
 from keras.engine.saving import load_model
-from keras.utils import np_utils, multi_gpu_model
+from keras.utils import np_utils
 from keras_preprocessing.text import tokenizer_from_json
 from keras_preprocessing import sequence
 
@@ -24,11 +24,8 @@ _NONPOLITICAL_ARTICLE = '''Table tennis world cup 2025 takes place in South Kore
                         '''to the advantage of underdog Bob Bobby who has been playing outstanding matches ''' \
                         '''in the National Table Tennis League this year.'''
 
-# evaluation was performed with 0.5 as threshold, i.e., >0.5 -> political article, else non-political article
-THRESHOLD_PROB = 0.5
 
-
-def filter_news(news_articles, threshold=0.75):
+def filter_news(news_articles, threshold=0.5):
     """
     Filter out all news articles that do not cover policy topics.
 
@@ -36,6 +33,7 @@ def filter_news(news_articles, threshold=0.75):
         news_articles: A 1D NumPy array of news articles. A news article is the string concatenation of title,
             lead paragraph, and body.
         threshold: A value in [0, 1]. The higher the threshold, the more aggressive is the filter.
+            The evaluation statistics (see `README.md`) are based on a threshold of 0.5.
 
     # Returns
         The filtered list of news articles.
@@ -63,11 +61,11 @@ class Classifier:
         self._load()
 
     def _load(self):
-        with open('./tokenizer.json', 'r') as tokenizer_file:
+        with open('./pon_classifier/tokenizer.json', 'r') as tokenizer_file:
             json = tokenizer_file.read()
 
         self._tokenizer = tokenizer_from_json(json)
-        self._model = load_model('./model.h5')
+        self._model = load_model('./pon_classifier/model.h5')
 
     @staticmethod
     def _as_array(tokens):
@@ -125,4 +123,4 @@ class EstimationSet:
 
 
 if __name__ == '__main__':
-    doctest.testmod()
+    doctest.testmod(raise_on_error=True)
